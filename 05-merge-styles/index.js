@@ -4,10 +4,14 @@ let pathNewFile = path.join(__dirname, 'project-dist', 'bundle.css');
 let styles = path.join(__dirname, 'styles');
 
 fs.readdir(styles, 'utf-8', (err, files) => {
-  if (err) throw err;
+  if (err) {
+    console.log(err);
+  };
 
   fs.writeFile(pathNewFile, '', (err) => {
-    if (err) throw err;
+    if (err) {
+      console.log(err);
+    };
   });
 
   files.forEach((el) => {
@@ -16,7 +20,9 @@ fs.readdir(styles, 'utf-8', (err, files) => {
 
       stream.on('data', (data) => {
         fs.appendFile(pathNewFile, data, (err) => {
-          if (err) throw err;
+          if (err) {
+            console.log(err);
+          };
         });
       });
     }
