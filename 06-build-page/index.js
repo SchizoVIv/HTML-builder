@@ -93,14 +93,14 @@ const mergeStyles = () => {
 
 function rewriteTemplate() {
   let templ = fs.createReadStream(pathTemplate, 'UTF-8');
-  
+
   templ.on('data', (el) => {
-      let newTempl = fs.createWriteStream(pathTemplProj, 'UTF-8');
-      fs.readdir(pathComponents, { withFileTypes: true }, (err, files) => {
-        if (err) {
-          return console.log(err);
-        }
-        let resHTML = el;
+    let newTempl = fs.createWriteStream(pathTemplProj, 'UTF-8');
+    fs.readdir(pathComponents, { withFileTypes: true }, (err, files) => {
+      if (err) {
+        return console.log(err);
+      }
+      let resHTML = el;
 
       files.forEach((file, i) => {
         i += 1;
@@ -114,7 +114,7 @@ function rewriteTemplate() {
 
           readerHtml.on('data', (el) => {
             resHTML = resHTML.replace(templTag, el);
-            
+
             if (i === files.length) {
               newTempl.write(resHTML);
             }
