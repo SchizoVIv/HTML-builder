@@ -5,12 +5,12 @@ let styles = path.join(__dirname, 'styles');
 
 fs.readdir(styles, 'utf-8', (err, files) => {
   if (err) {
-    console.log(err);
+    return console.log(err);
   }
 
   fs.writeFile(pathNewFile, '', (err) => {
     if (err) {
-      console.log(err);
+      return console.log(err);
     }
   });
 
@@ -21,7 +21,7 @@ fs.readdir(styles, 'utf-8', (err, files) => {
       stream.on('data', (data) => {
         fs.appendFile(pathNewFile, data, (err) => {
           if (err) {
-            console.log(err);
+            return console.log(err);
           }
         });
       });

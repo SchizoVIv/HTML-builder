@@ -3,13 +3,13 @@ const fs = require('fs');
 
 fs.readdir(path.join(__dirname, 'secret-folder'), (err, files) => {
   if (err) {
-    console.log(err);
+    return console.log(err);
   }
   files.forEach((el) => {
     let filePath = `secret-folder/${el}`;
     fs.stat(filePath, (err, stats) => {
       if (err) {
-        console.log(err);
+        return console.log(err);
       }
       if (!stats.isDirectory()) {
         const name = path.basename(filePath).split('.').slice(0, -1).join('.');
