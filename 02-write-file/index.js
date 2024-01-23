@@ -1,6 +1,9 @@
 const { stdin, stdout, exit } = process;
 const fs = require('fs');
-const writeStream = fs.createWriteStream('text.txt');
+const path = require('path');
+
+const filePath = path.join(__dirname, 'text.txt');
+const writeStream = fs.createWriteStream(filePath, { flags: 'a' });
 
 function theEnd() {
   stdout.write('Goodbye!');
@@ -10,9 +13,8 @@ function theEnd() {
 stdout.write('Hello, please write a text...\n');
 
 stdin.on('data', (data) => {
-  if (data.toString().trim() === 'exit') {
+  if (data.toString().toLowerCase().trim() === 'exit') {
     theEnd();
   }
-  console.log(data.toString().trim());
   writeStream.write(data);
 });
