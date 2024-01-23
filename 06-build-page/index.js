@@ -6,6 +6,7 @@ const pathCopyDirAssets = path.join(__dirname, '/project-dist/assets');
 const pathDirAssets = path.join(__dirname, '/assets');
 const pathDirStyles = path.join(__dirname, '/styles');
 const pathNewFileStyles = path.join(pathCopyDirAssets, '/styles.css');
+const pathNewFileStyles2 = path.join(pathDirProject, '/style.css');
 const pathTemplate = path.join(__dirname, 'template.html');
 const pathTemplProj = path.join(pathDirProject, '/index.html');
 const pathComponents = path.join(__dirname, '/components');
@@ -79,11 +80,12 @@ const mergeStyles = () => {
     });
 
     files.forEach((el) => {
+      console.log(pathNewFileStyles);
       if (path.parse(path.join(pathDirStyles, el)).ext === '.css') {
         let stream = fs.createReadStream(path.join(pathDirStyles, el));
 
         stream.on('data', (data) => {
-          fs.appendFile(pathNewFileStyles, data, (err) => {
+          fs.appendFile(pathNewFileStyles2, data, (err) => {
             if (err) {
               return console.log(err);
             }
