@@ -21,9 +21,12 @@ const createDir = (route) => {
 createDir(pathDirProject);
 createDir(pathCopyDirAssets);
 
+// const filePath = path.join(pathDirAssets, el);
+// const filePathCopy = path.join(pathCopyDirAssets, el);
+
 function copyFiles(el, dirPath) {
-  const filePath = `./assets/${dirPath}/${el}`;
-  const filePathCopy = `./project-dist/assets/${dirPath}/${el}`;
+  const filePath = `${pathDirAssets}/${dirPath}/${el}`;
+  const filePathCopy = `${pathCopyDirAssets}/${dirPath}/${el}`;
 
   fs.copyFile(filePath, filePathCopy, (err) => {
     if (err) {
