@@ -9,13 +9,14 @@ fs.readdir(dirPath, (err, files) => {
   }
   files.forEach((el) => {
     let filePath = path.join(dirPath, el);
+    const name = path.parse((filePath)).name;
+    console.log(el);
     fs.stat(filePath, (err, stats) => {
       if (err) {
         return console.log(err);
       }
       if (!stats.isDirectory()) {
-        const name = path.basename(filePath).split('.').slice(0, -1).join('.');
-        const extName = path.extname(filePath).split('.').slice(1).join('.');
+        const extName = path.extname(filePath).replace('.', '');
         const size = stats.size;
         console.log(`${name} - ${extName} - ${size}`);
       }
